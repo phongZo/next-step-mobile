@@ -1,45 +1,132 @@
 package itz.next_step.android.ui.main;
 
-import static android.provider.Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION;
-
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
 
 import androidx.annotation.Nullable;
-
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import itz.next_step.android.BR;
-import itz.next_step.android.BuildConfig;
 import itz.next_step.android.R;
 import itz.next_step.android.databinding.ActivityMainBinding;
 import itz.next_step.android.di.component.ActivityComponent;
 import itz.next_step.android.ui.base.activity.BaseActivity;
+import itz.next_step.android.ui.main.account.AccountFragment;
+import itz.next_step.android.ui.main.comment.TopCommentFragment;
+import itz.next_step.android.ui.main.cv.CvProfileFragment;
+import itz.next_step.android.ui.main.home.HomeFragment;
+import itz.next_step.android.ui.main.notification.NotificationFragment;
 
 
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
+    private Fragment active;
+    private FragmentManager fm;
+    private HomeFragment homeFragment;
+    private CvProfileFragment cvProfileFragment;
+    private TopCommentFragment topCommentFragment;
+    private NotificationFragment notificationFragment;
+    private AccountFragment accountFragment;
+    private static final String HOME = "HOME";
+    private static final String CV_PROFILE = "CV_PROFILE";
+    private static final String TOP_COMMENT = "TOP_COMMENT";
+    private static final String NOTIFICATION = "NOTIFICATION";
+    private static final String ACCOUNT = "ACCOUNT";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         // lay ssid tu share ref
         super.onCreate(savedInstanceState);
         viewBinding.setA(this);
         viewBinding.setVm(viewModel);
-        viewModel.setDeviceId(deviceId);
+        initFragments();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            if (!Environment.isExternalStorageManager()){
-                Intent intent = new Intent(ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, Uri.parse("package:" + BuildConfig.APPLICATION_ID));
-                startActivityForResult(intent, 1);
-            } else {
-                viewModel.getApplication().getUser();
+        viewBinding.bottomNav.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.home:
+                    handleFragment(HOME);
+                    return true;
+                case R.id.cv_profile:
+                    handleFragment(CV_PROFILE);
+                    return true;
+                case R.id.top_comment:
+                    handleFragment(TOP_COMMENT);
+                    return true;
+                case R.id.notification:
+                    handleFragment(NOTIFICATION);
+                    return true;
+                case R.id.account:
+                    handleFragment(ACCOUNT);
+                    return true;
             }
-        } else {
-            viewModel.getApplication().getUser();
-        }
-        viewModel.doLogin();
+            return false;
+        });
+
+
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+//            if (!Environment.isExternalStorageManager()){
+//                Intent intent = new Intent(ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION, Uri.parse("package:" + BuildConfig.APPLICATION_ID));
+//                startActivityForResult(intent, 1);
+//            } else {
+//                viewModel.getApplication().getUser();
+//            }
+//        } else {
+//            viewModel.getApplication().getUser();
+//        }
     }
+    private void initFragments() {
+        homeFragment = new HomeFragment();
+        fm = getSupportFragmentManager();
+        fm.beginTransaction()
+                .add(R.id.fragment_container, homeFragment, HOME)
+                .commit();
+        active = homeFragment;
+    }
+
+    public void handleFragment(String tag) {
+        if (fm == null) fm = getSupportFragmentManager();
+
+        if (homeFragment == null) homeFragment = new HomeFragment();
+        if (cvProfileFragment == null) cvProfileFragment = new CvProfileFragment();
+        if (topCommentFragment == null) topCommentFragment = new TopCommentFragment();
+        if (notificationFragment == null) notificationFragment = new NotificationFragment();
+        if (accountFragment == null) accountFragment = new AccountFragment();
+
+        Fragment target = null;
+        switch (tag) {
+            case HOME:
+                target = homeFragment;
+                break;
+            case CV_PROFILE:
+                target = cvProfileFragment;
+                break;
+            case TOP_COMMENT:
+                target = topCommentFragment;
+                break;
+            case NOTIFICATION:
+                target = notificationFragment;
+                break;
+            case ACCOUNT:
+                target = accountFragment;
+                break;
+        }
+
+        if (target == null || active == target) return;
+
+        if (!target.isAdded()) {
+            fm.beginTransaction()
+                    .hide(active)
+                    .add(R.id.fragment_container, target, tag)
+                    .commit();
+        } else {
+            fm.beginTransaction()
+                    .hide(active)
+                    .show(target)
+                    .commit();
+        }
+        active = target;
+    }
+
+
     @Override
     protected void onResume() {
         super.onResume();

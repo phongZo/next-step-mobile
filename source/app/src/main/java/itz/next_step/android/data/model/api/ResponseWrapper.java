@@ -5,6 +5,18 @@ public class ResponseWrapper<T> {
     private T data;
     private String message;
     private String code;
+    private Integer httpCode;
+
+    private String firebaseUrl;
+    private String urlBase;
+
+    public String getFirebaseUrl() {
+        return firebaseUrl;
+    }
+
+    public String getUrlBase() {
+        return urlBase;
+    }
 
     public boolean isResult() {
         return result;
@@ -21,4 +33,6 @@ public class ResponseWrapper<T> {
     public String getCode() {
         return code;
     }
+
+    public Integer getHttpCode() { return  httpCode; }
 }
