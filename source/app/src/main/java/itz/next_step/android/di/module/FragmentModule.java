@@ -15,6 +15,7 @@ import javax.inject.Named;
 
 import dagger.Module;
 import dagger.Provides;
+import itz.next_step.android.ui.main.account.AccountUnLoginViewModel;
 import itz.next_step.android.ui.main.account.AccountViewModel;
 import itz.next_step.android.ui.main.comment.TopCommentViewModel;
 import itz.next_step.android.ui.main.cv.CvProfileViewModel;
@@ -74,5 +75,13 @@ public class FragmentModule {
         Supplier<AccountViewModel> supplier = () -> new AccountViewModel(repository, (MVVMApplication)application);
         ViewModelProviderFactory<AccountViewModel> factory = new ViewModelProviderFactory<>(AccountViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(AccountViewModel.class);
+    }
+
+    @Provides
+    @FragmentScope
+    AccountUnLoginViewModel provideAccountUnLoginViewModel(Repository repository, Context application) {
+        Supplier<AccountUnLoginViewModel> supplier = () -> new AccountUnLoginViewModel(repository, (MVVMApplication)application);
+        ViewModelProviderFactory<AccountUnLoginViewModel> factory = new ViewModelProviderFactory<>(AccountUnLoginViewModel.class, supplier);
+        return new ViewModelProvider(fragment, factory).get(AccountUnLoginViewModel.class);
     }
 }

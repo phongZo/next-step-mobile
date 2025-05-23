@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import itz.next_step.android.constant.Constants;
+import itz.next_step.android.data.model.api.response.login.AccessTokenResponse;
 import itz.next_step.android.di.qualifier.PreferenceInfo;
 import itz.next_step.android.utils.LogService;
 import com.google.gson.Gson;
@@ -111,5 +112,32 @@ public class AppPreferencesService implements PreferencesService {
             LogService.e(ex);
         }
         return Primitives.wrap(mModelClass).cast(object);
+    }
+    @Override
+    public void saveAccessTokenObject(AccessTokenResponse tokenResponse) {
+        try {
+            String json = gson.toJson(tokenResponse);
+            mPrefs.edit().putString(KEY_ACCESS_TOKEN_OBJECT, json).apply();
+        } catch (Exception e) {
+            LogService.e(e);
+        }
+    }
+
+    @Override
+    public AccessTokenResponse getAccessTokenObject() {
+        try {
+            String json = mPrefs.getString(KEY_ACCESS_TOKEN_OBJECT, null);
+            if (json != null) {
+                return gson.fromJson(json, AccessTokenResponse.class);
+            }
+        } catch (Exception e) {
+            LogService.e(e);
+        }
+        return null;
+    }
+    @Override
+    public void clearAuthData() {
+        removeKey(KEY_BEARER_TOKEN);
+        removeKey(KEY_ACCESS_TOKEN_OBJECT);
     }
 }

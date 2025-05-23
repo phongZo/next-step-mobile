@@ -11,6 +11,8 @@ import itz.next_step.android.data.Repository;
 import itz.next_step.android.di.scope.ActivityScope;
 import itz.next_step.android.ui.base.activity.BaseActivity;
 import itz.next_step.android.ui.main.MainViewModel;
+import itz.next_step.android.ui.main.login.LoginViewModel;
+import itz.next_step.android.ui.main.login.SignUpViewModel;
 import itz.next_step.android.utils.GetInfo;
 
 import javax.inject.Named;
@@ -50,5 +52,19 @@ public class ActivityModule {
         return new ViewModelProvider(activity, factory).get(MainViewModel.class);
     }
 
+    @Provides
+    @ActivityScope
+    LoginViewModel provideLoginViewModel(Repository repository, Context application) {
+        Supplier<LoginViewModel> supplier = () -> new LoginViewModel(repository, (MVVMApplication)application);
+        ViewModelProviderFactory<LoginViewModel> factory = new ViewModelProviderFactory<>(LoginViewModel.class, supplier);
+        return new ViewModelProvider(activity, factory).get(LoginViewModel.class);
+    }
 
+    @Provides
+    @ActivityScope
+    SignUpViewModel provideSignUpViewModel(Repository repository, Context application) {
+        Supplier<SignUpViewModel> supplier = () -> new SignUpViewModel(repository, (MVVMApplication)application);
+        ViewModelProviderFactory<SignUpViewModel> factory = new ViewModelProviderFactory<>(SignUpViewModel.class, supplier);
+        return new ViewModelProvider(activity, factory).get(SignUpViewModel.class);
+    }
 }

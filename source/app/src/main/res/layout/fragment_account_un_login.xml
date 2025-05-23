@@ -4,10 +4,10 @@
     <data>
         <variable
             name="f"
-            type="itz.next_step.android.ui.main.account.AccountFragment"/>
+            type="itz.next_step.android.ui.main.account.AccountUnLoginFragment"/>
         <variable
             name="vm"
-            type="itz.next_step.android.ui.main.account.AccountViewModel"/>
+            type="itz.next_step.android.ui.main.account.AccountUnLoginViewModel"/>
 
         <import type="android.view.View"/>
     </data>
@@ -44,177 +44,13 @@
                         android:layout_height="wrap_content"
                         android:orientation="vertical"
                         android:background="@color/bg_app">
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_80sdp"
-                            android:layout_marginBottom="@dimen/_8sdp"
-                            android:orientation="vertical">
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="@dimen/_12sdp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    style="@style/Text_12_Bold_Black"
-                                    android:text="Kinh nghiệm làm việc"
-                                    android:layout_marginHorizontal="@dimen/_12sdp"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    style="@style/Text_12_Bold_Edit"
-                                    android:text="@string/edit"
-                                    android:layout_marginHorizontal="@dimen/_12sdp"
-                                    android:layout_alignParentEnd="true"/>
-                            </RelativeLayout>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                style="@style/Text_11_Normal_No_Update"
-                                android:text="@string/no_update"
-                                android:layout_marginHorizontal="@dimen/_12sdp"
-                                android:layout_marginBottom="@dimen/_12sdp"/>
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_1sdp"
-                                android:background="@color/line"
-                                android:layout_marginHorizontal="@dimen/_12sdp"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginBottom="@dimen/_8sdp">
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="@dimen/_12sdp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    style="@style/Text_12_Bold_Black"
-                                    android:text="Vị trí chuyên môn"
-                                    android:layout_marginHorizontal="@dimen/_12sdp"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    style="@style/Text_12_Bold_Edit"
-                                    android:text="@string/edit"
-                                    android:layout_marginHorizontal="@dimen/_12sdp"
-                                    android:layout_alignParentEnd="true"/>
-                            </RelativeLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                style="@style/Text_11_Normal_No_Update"
-                                android:text="@string/no_update"
-                                android:layout_marginHorizontal="@dimen/_12sdp"
-                                android:layout_marginBottom="@dimen/_12sdp"/>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_1sdp"
-                                android:background="@color/line"
-                                android:layout_marginHorizontal="@dimen/_12sdp"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginBottom="@dimen/_8sdp">
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="@dimen/_12sdp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    style="@style/Text_12_Bold_Black"
-                                    android:text="Địa điểm làm việc mong muốn"
-                                    android:layout_marginHorizontal="@dimen/_12sdp"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    style="@style/Text_12_Bold_Edit"
-                                    android:text="@string/edit"
-                                    android:layout_marginHorizontal="@dimen/_12sdp"
-                                    android:layout_alignParentEnd="true"/>
-                            </RelativeLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                style="@style/Text_11_Normal_No_Update"
-                                android:text="@string/no_update"
-                                android:layout_marginHorizontal="@dimen/_12sdp"
-                                android:layout_marginBottom="@dimen/_12sdp"/>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_1sdp"
-                                android:background="@color/line"
-                                android:layout_marginHorizontal="@dimen/_12sdp"/>
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_marginBottom="@dimen/_8sdp">
-                            <RelativeLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginBottom="@dimen/_12sdp">
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    style="@style/Text_12_Bold_Black"
-                                    android:text="Quản lý hồ sơ"
-                                    android:layout_marginHorizontal="@dimen/_12sdp"/>
-
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    style="@style/Text_12_Bold_Edit"
-                                    android:text="@string/edit"
-                                    android:layout_marginHorizontal="@dimen/_12sdp"
-                                    android:layout_alignParentEnd="true"/>
-                            </RelativeLayout>
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                style="@style/Text_11_Normal_No_Update"
-                                android:text="@string/no_update"
-                                android:layout_marginHorizontal="@dimen/_12sdp"
-                                android:layout_marginBottom="@dimen/_12sdp"/>
-
-                            <View
-                                android:layout_width="match_parent"
-                                android:layout_height="@dimen/_1sdp"
-                                android:background="@color/line"
-                                android:layout_marginHorizontal="@dimen/_12sdp"/>
-                        </LinearLayout>
-
-
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/Text_12_Bold_Black"
                             android:text="Quản lý tìm việc"
                             android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_80sdp"
                             android:layout_marginBottom="@dimen/_12sdp"/>
 
                         <LinearLayout
@@ -828,25 +664,26 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_marginEnd="@dimen/_12sdp"
-                android:gravity="center_vertical">
+                android:gravity="center">
 
                 <TextView
-                    android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    style="@style/Text_14_Bold_Black"
+                    style="@style/Text_12_Bold_Black"
                     android:text="@string/please_login"
-                    />
+                    android:layout_marginVertical="@dimen/_6sdp"/>
 
                 <TextView
-                    android:id="@+id/email"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/Text_12_Normal_Black"
-                    android:text="@string/please_login"/>
+                    style="@style/Text_12_Bold_White"
+                    android:text="@string/login"
+                    android:background="@drawable/bg_btn_radius_12"
+                    android:gravity="center"
+                    android:padding="@dimen/_6sdp"
+                    android:onClick="@{v -> f.onLoginClick()}"/>
 
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>
-
 </layout>

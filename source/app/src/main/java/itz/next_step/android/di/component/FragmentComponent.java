@@ -6,6 +6,7 @@ import itz.next_step.android.di.scope.FragmentScope;
 
 import dagger.Component;
 import itz.next_step.android.ui.main.account.AccountFragment;
+import itz.next_step.android.ui.main.account.AccountUnLoginFragment;
 import itz.next_step.android.ui.main.comment.TopCommentFragment;
 import itz.next_step.android.ui.main.cv.CvProfileFragment;
 import itz.next_step.android.ui.main.home.HomeFragment;
@@ -19,4 +20,5 @@ public interface FragmentComponent {
     void inject(NotificationFragment fragment);
     void inject(TopCommentFragment fragment);
     void inject(AccountFragment fragment);
+    void inject(AccountUnLoginFragment fragment);
 }

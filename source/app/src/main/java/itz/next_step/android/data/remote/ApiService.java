@@ -19,6 +19,7 @@ import itz.next_step.android.data.model.api.request.employee.CreateEmployeeReque
 import itz.next_step.android.data.model.api.request.employee.UpdateEmployeeRequest;
 import itz.next_step.android.data.model.api.request.group.CreateGroupRequest;
 import itz.next_step.android.data.model.api.request.group.UpdateGroupRequest;
+import itz.next_step.android.data.model.api.request.login.CandidateLoginRequest;
 import itz.next_step.android.data.model.api.request.nation.CreateNationRequest;
 import itz.next_step.android.data.model.api.request.nation.UpdateNationRequest;
 import itz.next_step.android.data.model.api.request.user.LoginRequest;
@@ -31,6 +32,7 @@ import itz.next_step.android.data.model.api.response.category.CategoryResponse;
 import itz.next_step.android.data.model.api.response.company.CompanyResponse;
 import itz.next_step.android.data.model.api.response.employee.EmployeeResponse;
 import itz.next_step.android.data.model.api.response.group.GroupResponse;
+import itz.next_step.android.data.model.api.response.login.AccessTokenResponse;
 import itz.next_step.android.data.model.api.response.nation.NationAdminDtoResponse;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -41,6 +43,10 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 public interface ApiService {
+
+    @POST("/api/token")
+    @Headers({"UseBasicAuth: 1"})
+    Observable<AccessTokenResponse> candidateLogin(@Body CandidateLoginRequest request);
 
 //    USER
     @POST("/v1/user/login")
@@ -83,6 +89,7 @@ public interface ApiService {
     @GET("/v1/candidate/profile")
     Observable<ResponseWrapper<CandidateResponse>> getCandidateProfile();
     @POST("/v1/candidate/signup")
+    @Headers({"IgnoreAuth: 1"})
     Observable<ResponseWrapper> signUpCandidate(@Body CandidateSignUpRequest request);
     @PUT("/v1/candidate/signup")
     Observable<ResponseWrapper> updateProfileCandidate(@Body CandidateUpdateProfileRequest request);

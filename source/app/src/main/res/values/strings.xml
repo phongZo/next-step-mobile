@@ -11,4 +11,27 @@
     <string name="top_comment">Top Comment</string>
     <string name="notification">Thông báo</string>
     <string name="account">Tài Khoản</string>
+    <string name="please_login">Vui lòng đăng nhập</string>
+    <string name="login">Đăng nhập</string>
+    <string name="phone">Phone</string>
+    <string name="password">Mật Khẩu</string>
+    <string name="name">Name</string>
+    <string name="email">Email</string>
+    <string name="signup">Đăng ký</string>
+    <string name="err_name">Hãy cho chúng tôi biết tên của bạn</string>
+    <string name="err_email">Hãy cho chúng tôi biết email của bạn</string>
+    <string name="err_phone">Hãy cho chúng tôi biết số điện thoại của bạn</string>
+    <string name="err_password">Mật khẩu không được để trống</string>
+    <string name="err_email_2">Địa chỉ email không đúng định dạng</string>
+    <string name="err_phone_2">Số điện thoại không đúng định dạng</string>
+    <string name="err_password_2">Mật khẩu phải từ 6 đến 12 kí tự</string>
+    <string name="err_password_3">Mật khẩu không khớp</string>
+
+    <string name="signup_success">Đăng ký tài khoản thành công</string>
+    <string name="signup_un_success">Đăng kí tài khoản không thành công</string>
+
+    <string name="login_un_success">Số điện thoại hoặc mật khẩu không đúng</string>
+    <string name="edit">Sửa</string>
+    <string name="no_update">Chưa cập nhật</string>
+
 </resources>

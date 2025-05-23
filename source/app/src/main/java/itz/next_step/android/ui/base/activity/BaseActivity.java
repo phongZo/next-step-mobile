@@ -6,11 +6,17 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.TextView;
+import android.widget.EditText;
 
 import androidx.annotation.LayoutRes;
 import androidx.annotation.Nullable;
@@ -22,6 +28,11 @@ import androidx.databinding.ObservableField;
 import androidx.databinding.ViewDataBinding;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import java.util.Objects;
+
+import javax.inject.Inject;
+import javax.inject.Named;
+
 import itz.next_step.android.MVVMApplication;
 import itz.next_step.android.R;
 import itz.next_step.android.constant.Constants;
@@ -29,9 +40,6 @@ import itz.next_step.android.di.component.ActivityComponent;
 import itz.next_step.android.di.component.DaggerActivityComponent;
 import itz.next_step.android.di.module.ActivityModule;
 import itz.next_step.android.utils.DialogUtils;
-
-import javax.inject.Inject;
-import javax.inject.Named;
 
 public abstract class BaseActivity<B extends ViewDataBinding, V extends BaseViewModel> extends AppCompatActivity{
 
@@ -81,11 +89,11 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends BaseView
                 toastMessage.showMessage(getApplicationContext());
             }
         });
-        viewModel.progressBarMsg.observe(this, progressBarMsg ->{
-            if (progressBarMsg != null){
-                changeProgressBarMsg(progressBarMsg);
-            }
-        });
+//        viewModel.progressBarMsg.observe(this, progressBarMsg ->{
+//            if (progressBarMsg != null){
+//                changeProgressBarMsg(progressBarMsg);
+//            }
+//        });
         filterGlobalApplication = new IntentFilter();
         filterGlobalApplication.addAction(Constants.ACTION_EXPIRED_TOKEN);
         globalApplicationReceiver = new BroadcastReceiver() {
@@ -105,6 +113,7 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends BaseView
     @Override
     protected void onResume() {
         super.onResume();
+        viewModel.hideLoading();
         LocalBroadcastManager.getInstance(this).registerReceiver(globalApplicationReceiver, filterGlobalApplication);
         updateCurrentAcitivity();
     }
@@ -147,20 +156,35 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends BaseView
         viewBinding.executePendingBindings();
     }
 
-    public void showProgressbar(String msg){
+    public void showProgressbar(String msg) {
         if (progressDialog != null) {
             progressDialog.dismiss();
             progressDialog = null;
         }
-        progressDialog = DialogUtils.createDialogLoading(this, msg);
-        progressDialog.show();
-    }
 
-    public void changeProgressBarMsg(String msg){
-        if (progressDialog != null){
-            ((TextView)progressDialog.findViewById(R.id.progressbar_msg)).setText(msg);
+        progressDialog = DialogUtils.createDialogLoading(this);
+        progressDialog.show();
+
+        int size = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 80, getResources().getDisplayMetrics());
+
+        Window window = progressDialog.getWindow();
+        if (window != null) {
+            window.setLayout(size, size);
+            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+            WindowManager.LayoutParams lp = window.getAttributes();
+            lp.dimAmount = 0.05f;
+            window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            window.setAttributes(lp);
         }
     }
+
+//    public void changeProgressBarMsg(String msg){
+//        if (progressDialog != null){
+//            ((TextView)progressDialog.findViewById(R.id.progressbar_msg)).setText(msg);
+//        }
+//    }
 
     public void hideProgress() {
         if (progressDialog != null) {
@@ -202,6 +226,25 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends BaseView
             leftTitle = new ObservableField<>(msg);
         } else {
             leftTitle.set(msg);
+        }
+    }
+    public void hideKeyboard(View view) {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+        clearFocusFromAllEditTexts(viewBinding.getRoot());
+    }
+    public void clearFocusFromAllEditTexts(View view) {
+        if (view instanceof EditText) {
+            view.clearFocus();
+        }
+        if (view instanceof ViewGroup) {
+            ViewGroup viewGroup = (ViewGroup) view;
+            for (int i = 0; i < viewGroup.getChildCount(); i++) {
+                View child = viewGroup.getChildAt(i);
+                clearFocusFromAllEditTexts(child);
+            }
         }
     }
 }

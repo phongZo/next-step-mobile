@@ -3,6 +3,9 @@ package itz.next_step.android.utils;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -46,20 +49,39 @@ public class DialogUtils {
         }
         return dialog;
     }
-
-    public static Dialog createDialogLoading(Context context, String msg) {
+    public static Dialog createDialogLoading(Context context) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
-
         View layout = inflater.inflate(R.layout.layout_progressbar, null);
-        if(msg!=null) {
-            TextView progressbarMsg = (TextView) layout.findViewById(R.id.progressbar_msg);
-            progressbarMsg.setText(msg);
+
+        AlertDialog dialog = new AlertDialog.Builder(context)
+                .setView(layout)
+                .setCancelable(false)
+                .create();
+
+        // Chỉ set nền trong suốt, KHÔNG setLayout ở đây
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         }
 
-        builder.setCancelable(false); // if you want user to wait for some process to finish,
-        builder.setView(layout);
-        return builder.create();
+        return dialog;
     }
+
+
+
+
+//    public static Dialog createDialogLoading(Context context, String msg) {
+//        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//
+//        android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
+//
+//        View layout = inflater.inflate(R.layout.layout_progressbar, null);
+////        if(msg!=null) {
+////            TextView progressbarMsg = (TextView) layout.findViewById(R.id.progressbar_msg);
+////            progressbarMsg.setText(msg);
+////        }
+//
+//        builder.setCancelable(false); // if you want user to wait for some process to finish,
+//        builder.setView(layout);
+//        return builder.create();
+//    }
 }

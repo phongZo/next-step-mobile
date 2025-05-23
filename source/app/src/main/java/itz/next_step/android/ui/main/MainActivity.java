@@ -1,5 +1,6 @@
 package itz.next_step.android.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -12,9 +13,11 @@ import itz.next_step.android.databinding.ActivityMainBinding;
 import itz.next_step.android.di.component.ActivityComponent;
 import itz.next_step.android.ui.base.activity.BaseActivity;
 import itz.next_step.android.ui.main.account.AccountFragment;
+import itz.next_step.android.ui.main.account.AccountUnLoginFragment;
 import itz.next_step.android.ui.main.comment.TopCommentFragment;
 import itz.next_step.android.ui.main.cv.CvProfileFragment;
 import itz.next_step.android.ui.main.home.HomeFragment;
+import itz.next_step.android.ui.main.login.LoginActivity;
 import itz.next_step.android.ui.main.notification.NotificationFragment;
 
 
@@ -26,11 +29,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private TopCommentFragment topCommentFragment;
     private NotificationFragment notificationFragment;
     private AccountFragment accountFragment;
+    private AccountUnLoginFragment accountUnLoginFragment;
     private static final String HOME = "HOME";
     private static final String CV_PROFILE = "CV_PROFILE";
     private static final String TOP_COMMENT = "TOP_COMMENT";
     private static final String NOTIFICATION = "NOTIFICATION";
     private static final String ACCOUNT = "ACCOUNT";
+    private static final String ACCOUNT_UN_LOGIN = "ACCOUNT_UN_LOGIN";
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,7 +61,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                     handleFragment(NOTIFICATION);
                     return true;
                 case R.id.account:
-                    handleFragment(ACCOUNT);
+                    if (viewModel.isLogin()) {
+                        handleFragment(ACCOUNT);
+                    } else {
+                        handleFragment(ACCOUNT_UN_LOGIN);
+                    }
                     return true;
             }
             return false;
@@ -73,6 +83,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 //            viewModel.getApplication().getUser();
 //        }
     }
+
     private void initFragments() {
         homeFragment = new HomeFragment();
         fm = getSupportFragmentManager();
@@ -90,6 +101,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         if (topCommentFragment == null) topCommentFragment = new TopCommentFragment();
         if (notificationFragment == null) notificationFragment = new NotificationFragment();
         if (accountFragment == null) accountFragment = new AccountFragment();
+        if (accountUnLoginFragment == null) accountUnLoginFragment = new AccountUnLoginFragment();
 
         Fragment target = null;
         switch (tag) {
@@ -107,6 +119,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 break;
             case ACCOUNT:
                 target = accountFragment;
+                break;
+            case ACCOUNT_UN_LOGIN:
+                target = accountUnLoginFragment;
                 break;
         }
 
@@ -126,12 +141,20 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         active = target;
     }
 
+    public void navigateToLogin() {
+        Intent it = new Intent(this, LoginActivity.class);
+        startActivity(it);
+    }
 
     @Override
     protected void onResume() {
         super.onResume();
-
+        if (getIntent().getBooleanExtra("from_login", false)) {
+            handleFragment(HOME);
+            getIntent().removeExtra("from_login");
+        }
     }
+
     @Override
     public int getLayoutId() {
         return R.layout.activity_main;

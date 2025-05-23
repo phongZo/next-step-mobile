@@ -2,8 +2,15 @@ package itz.next_step.android.data.local.prefs;
 
 import android.content.SharedPreferences;
 
+import itz.next_step.android.data.model.api.response.login.AccessTokenResponse;
+
 public interface PreferencesService {
     public static final String KEY_BEARER_TOKEN="KEY_BEARER_TOKEN";
+    String KEY_ACCESS_TOKEN_OBJECT = "KEY_ACCESS_TOKEN_OBJECT";
+
+    void saveAccessTokenObject(AccessTokenResponse tokenResponse);
+    AccessTokenResponse getAccessTokenObject();
+    void clearAuthData();
 
     String getToken();
     void setToken(String token);

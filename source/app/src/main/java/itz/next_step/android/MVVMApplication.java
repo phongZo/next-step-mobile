@@ -24,6 +24,7 @@ import timber.log.Timber;
 
 public class MVVMApplication extends Application implements LifecycleObserver {
     @Setter
+    @Getter
     private AppCompatActivity currentActivity;
 
     @Getter

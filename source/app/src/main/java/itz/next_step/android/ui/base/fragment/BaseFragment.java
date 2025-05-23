@@ -1,10 +1,15 @@
 package itz.next_step.android.ui.base.fragment;
 
 import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -91,8 +96,22 @@ public abstract class BaseFragment <B extends ViewDataBinding,V extends BaseFrag
             progressDialog.dismiss();
             progressDialog = null;
         }
-        progressDialog = DialogUtils.createDialogLoading(requireContext(), msg);
+        progressDialog = DialogUtils.createDialogLoading(requireContext());
         progressDialog.show();
+
+        int size = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP, 80, getResources().getDisplayMetrics());
+
+        Window window = progressDialog.getWindow();
+        if (window != null) {
+            window.setLayout(size, size);
+            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+            WindowManager.LayoutParams lp = window.getAttributes();
+            lp.dimAmount = 0.05f;
+            window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+            window.setAttributes(lp);
+        }
     }
 
     public void hideProgress() {

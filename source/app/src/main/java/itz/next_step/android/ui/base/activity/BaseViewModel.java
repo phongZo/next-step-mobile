@@ -4,6 +4,8 @@ import androidx.databinding.ObservableBoolean;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import java.util.Objects;
+
 import itz.next_step.android.MVVMApplication;
 import itz.next_step.android.data.Repository;
 import itz.next_step.android.data.model.other.ToastMessage;
@@ -66,5 +68,9 @@ public class BaseViewModel extends ViewModel {
 
     public void changeProgressBarMsg(String message){
         progressBarMsg.setValue(message);
+    }
+
+    public boolean isLogin() {
+        return repository.getToken() != null && !Objects.equals(repository.getToken(), "") && !Objects.equals(repository.getToken(), "NULL");
     }
 }
