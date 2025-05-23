@@ -24,15 +24,7 @@ public abstract class AppDatabase extends RoomDatabase {
 //    public abstract DbOrderDao getOrderDao();
     public abstract DbUserDao getUserDao();
 
-    //    @RenameColumn(tableName = "db_restaurant",fromColumnName = "id",toColumnName = "id_id")
     public static class AppDatabaseMigration implements AutoMigrationSpec {
-        @Override
-        public void onPostMigrate(@NonNull SupportSQLiteDatabase db) {
-            AutoMigrationSpec.super.onPostMigrate(db);
-        }
-    }
-    @DeleteTable(tableName = "order")
-    public static class TwoThree implements AutoMigrationSpec {
         @Override
         public void onPostMigrate(@NonNull SupportSQLiteDatabase db) {
             AutoMigrationSpec.super.onPostMigrate(db);

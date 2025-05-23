@@ -16,9 +16,4 @@ public class AppDbService implements RoomService {
     public DbUserDao userDao() {
         return mAppDatabase.getUserDao();
     }
-
-//    @Override
-//    public DbOrderDao orderDao() {
-//        return mAppDatabase.getOrderDao();
-//    }
 }

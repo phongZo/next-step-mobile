@@ -6,7 +6,7 @@ android {
     buildToolsVersion "30.0.3"
 
     defaultConfig {
-        applicationId "nails.pos.android"
+        applicationId "itz.next_step.android"
         minSdkVersion 24
         targetSdkVersion 30
         versionCode 1
