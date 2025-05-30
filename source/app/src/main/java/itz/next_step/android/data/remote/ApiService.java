@@ -34,6 +34,7 @@ import itz.next_step.android.data.model.api.response.employee.EmployeeResponse;
 import itz.next_step.android.data.model.api.response.group.GroupResponse;
 import itz.next_step.android.data.model.api.response.login.AccessTokenResponse;
 import itz.next_step.android.data.model.api.response.nation.NationAdminDtoResponse;
+import itz.next_step.android.data.model.api.response.post.PostClientListResponse;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -151,4 +152,8 @@ public interface ApiService {
     Observable<ResponseWrapper<ResponseListObj<NationAdminDtoResponse>>> getListNation();
     @PUT("/v1/nation/update")
     Observable<ResponseWrapper> updateNation(@Body UpdateNationRequest request);
+
+    //    POST CONTROLLER
+    @GET("/v1/post/client-list")
+    Observable<ResponseWrapper<ResponseListObj<PostClientListResponse<CompanyResponse>>>> getPost();
 }
