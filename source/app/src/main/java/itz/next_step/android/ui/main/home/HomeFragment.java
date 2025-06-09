@@ -52,7 +52,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
                 return true;
             }
         });
-        postsAdapter = new PostsAdapter();
+        postsAdapter = new PostsAdapter(viewModel);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
         binding.rcvRecommendedJobs.setLayoutManager(linearLayoutManager);
         binding.rcvRecommendedJobs.setAdapter(postsAdapter);

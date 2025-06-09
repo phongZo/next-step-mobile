@@ -14,7 +14,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "BASE_URL", "\"https://api-next-step.plsolution.online/\""
+        buildConfigField "String", "BASE_URL", "\"https://085a-115-73-105-67.ngrok-free.app\""
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
@@ -170,6 +170,9 @@ dependencies {
     implementation "com.github.arkon.FlexibleAdapter:flexible-adapter:$flexible_adapter_version"
     implementation "com.github.arkon.FlexibleAdapter:flexible-adapter-databinding:$flexible_adapter_version"
     implementation "com.github.arkon.FlexibleAdapter:flexible-adapter-ui:$flexible_adapter_version"
+
+    implementation "com.airbnb.android:lottie:6.0.0"
+
 
 }
 apply plugin: 'com.google.gms.google-services'

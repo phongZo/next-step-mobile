@@ -1,10 +1,13 @@
 package itz.next_step.android.ui.main.home;
 
+import android.graphics.Bitmap;
 import android.util.Log;
 
+import androidx.databinding.ObservableField;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,6 +15,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.core.ObservableSource;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.functions.Consumer;
 import io.reactivex.rxjava3.functions.Function;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import itz.next_step.android.MVVMApplication;
@@ -20,7 +24,9 @@ import itz.next_step.android.data.model.api.ResponseListObj;
 import itz.next_step.android.data.model.api.response.company.CompanyResponse;
 import itz.next_step.android.data.model.api.response.post.PostClientListResponse;
 import itz.next_step.android.ui.base.fragment.BaseFragmentViewModel;
+import itz.next_step.android.utils.ImageUtils;
 import itz.next_step.android.utils.NetworkUtils;
+import okhttp3.ResponseBody;
 import timber.log.Timber;
 
 public class HomeViewModel extends BaseFragmentViewModel {
@@ -98,5 +104,30 @@ public class HomeViewModel extends BaseFragmentViewModel {
                     error -> Log.e("searchJob", "Lỗi khi lọc công việc: " + error.getMessage())
             )
         );
+    }
+
+    public void loadLogo(String url, MutableLiveData<Bitmap> logo){
+        compositeDisposable.add(repository.getApiService().loadImage(url)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<ResponseBody>() {
+                    @Override
+                    public void accept(ResponseBody response) throws Exception {
+                        InputStream inputStream = response.byteStream();
+                        Bitmap bitmap = ImageUtils.getBitmap(inputStream);
+                        if (bitmap != null) {
+                            logo.setValue(bitmap);
+                        } else {
+                            Log.e("ProfileViewModel", "Lỗi: Bitmap rỗng");
+                        }
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        Log.e("ProfileViewModel", "Lỗi khi tải ảnh: " + throwable.getMessage());
+                    }
+                })
+        );
+
     }
 }
