@@ -5,8 +5,8 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class PostClientListResponse<T> {
-    private T company;
+public class PostClientListResponse<CompanyResponse> {
+    private CompanyResponse company;
     private int contractType;
     private String description;
     private int experience;
