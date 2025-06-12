@@ -19,48 +19,62 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@color/bg_app">
-
-
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_80sdp"
                 android:background="@drawable/bg_top"/>
 
-            <LinearLayout
+            <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_15sdp"
-                android:layout_marginTop="@dimen/_40sdp"
+                android:fillViewport="true"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:background="@color/bg_app">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="0dp"
+                    android:orientation="vertical"
+                    android:background="@color/bg_app">
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Gợi ý việc làm phù hợp"
-                        android:textColor="@color/black"
-                        android:layout_weight="1"
-                        style="@style/Text_16_Bold_Black"/>
-                    <TextView
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            style="@style/Text_16_Bold_Black"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Gợi ý việc làm phù hợp"
+                            android:textColor="@color/black" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Xem tất cả"
+                            android:textColor="@color/text_3"
+                            style="@style/Text_12_Bold_Edit"/>
+                    </LinearLayout>
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/viewPager"
                         android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_500sdp" />
+
+                    <LinearLayout
+                        android:id="@+id/indicatorLayout"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Xem tất cả"
-                        android:textColor="@color/text_3"
-                        style="@style/Text_12_Bold_Edit"/>
+                        android:layout_margin="16dp" />
                 </LinearLayout>
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rcvRecommendedJobs"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
-            </LinearLayout>
+
+            </androidx.core.widget.NestedScrollView>
 
 
         </LinearLayout>
@@ -80,6 +94,7 @@
             app:iconifiedByDefault="false"
             android:layout_marginTop="@dimen/_60sdp"
             android:layout_marginStart="@dimen/_10sdp"
+            app:queryHint="Tìm kiếm ở đây"
             android:background="@drawable/bg_white_stroke_gray"
             />
     </FrameLayout>

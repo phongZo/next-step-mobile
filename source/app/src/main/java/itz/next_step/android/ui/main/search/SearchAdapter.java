@@ -1,11 +1,9 @@
-package itz.next_step.android.ui.main.home;
+package itz.next_step.android.ui.main.search;
 
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
@@ -15,15 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import itz.next_step.android.R;
 import itz.next_step.android.data.model.api.response.company.CompanyResponse;
 import itz.next_step.android.data.model.api.response.post.PostClientListResponse;
 import itz.next_step.android.databinding.ItemJobBinding;
+import itz.next_step.android.ui.main.home.HomeViewModel;
 
-public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+public class SearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private final List<PostClientListResponse<CompanyResponse>> postList = new ArrayList<>();
-    private HomeViewModel viewModel;
-    public PostsAdapter(HomeViewModel viewModel){
+    private SearchViewModel viewModel;
+    public SearchAdapter(SearchViewModel viewModel){
         this.viewModel = viewModel;
     }
 
@@ -46,7 +44,7 @@ public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        Log.d("PostsAdapter", "Binding item at position: " + position);
+        Log.d("SearchViewModel", "Binding item at position: " + position);
         if(holder instanceof PostViewHolder){
             ((PostViewHolder) holder).bind(postList.get(position), viewModel);
         }
@@ -66,7 +64,7 @@ public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             this.binding = binding;
             this.liveLogo = new MutableLiveData<>();
         }
-        public void bind(PostClientListResponse<CompanyResponse> item, HomeViewModel viewModel){
+        public void bind(PostClientListResponse<CompanyResponse> item, SearchViewModel viewModel){
             binding.tvJobPosition.setText(item.getName());
             binding.tvCompanyName.setText(item.getCompany().getName());
 

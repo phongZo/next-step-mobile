@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="a"
+            type="itz.next_step.android.ui.main.search.SearchActivity"/>
+        <variable
+            name="vm"
+            type="itz.next_step.android.ui.main.search.SearchViewModel"/>
+
+        <import type="android.view.View"/>
+    </data>
+
+    <FrameLayout
+        android:animateLayoutChanges="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="Không tìm thấy công việc"
+            android:textColor="@color/text_gray"
+            android:textSize="@dimen/_20sdp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/bg_app">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                app:navigationIcon="@drawable/ic_back"
+                android:background="@color/bg_app"/>
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
+                android:layout_width="@dimen/_300sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                app:iconifiedByDefault="false"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                app:queryHint="Tìm kiếm ở đây"
+                android:background="@drawable/bg_white_stroke_gray"
+                />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcvSearch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:orientation="vertical"/>
+
+        </LinearLayout>
+
+
+    </FrameLayout>
+</layout>

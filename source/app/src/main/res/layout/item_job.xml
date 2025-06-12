@@ -3,6 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/_10sdp"
+    android:layout_marginStart="@dimen/_15sdp"
+    android:layout_marginEnd="@dimen/_15sdp"
     android:padding="@dimen/_10sdp"
     android:orientation="vertical"
     android:background="@drawable/bg_green_stroke_green"
@@ -15,7 +17,9 @@
             android:id="@+id/iv_logo"
             android:layout_width="@dimen/_60sdp"
             android:layout_height="@dimen/_60sdp"
-            android:background="@drawable/bg_white_stroke_gray"/>
+            android:padding="@dimen/_5sdp"
+            android:background="@drawable/bg_white_stroke_gray"
+            android:scaleType="centerInside"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -26,14 +30,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Text_14_Bold_Black"
-                android:text="Vị trí công việc"/>
+                android:text="Vị trí công việc"
+                android:maxLines="2"
+                android:ellipsize="end"/>
             <TextView
                 android:id="@+id/tvCompanyName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/Text_12_Normal_Black"
                 android:textColor="@color/text_gray"
-                android:text="Tên công ty"/>
+                android:text="Tên công ty"
+                android:maxLines="1"
+                android:ellipsize="end"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -56,8 +64,8 @@
             android:paddingStart="@dimen/_5sdp"
             android:paddingEnd="@dimen/_5sdp"
             android:layout_marginStart="@dimen/_5sdp"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:layout_marginBottom="@dimen/_2sdp"
+            android:paddingTop="@dimen/_2sdp"
+            android:paddingBottom="@dimen/_2sdp"
             android:textColor="@color/black"
             style="@style/Text_12_Normal_Black"
             android:background="@drawable/bg_gray_radius_20sdp"
