@@ -93,6 +93,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         }
         ImageView searchIcon = binding.searchView.findViewById(androidx.appcompat.R.id.search_mag_icon);
         searchIcon.setColorFilter(ContextCompat.getColor(requireContext(), R.color.bg_btn));
+
     }
 
     private void setupIndicator(int count) {

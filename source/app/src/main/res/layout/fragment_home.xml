@@ -12,90 +12,99 @@
         <import type="android.view.View"/>
     </data>
 
-    <FrameLayout
-        android:animateLayoutChanges="true"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/bg_app">
 
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@color/bg_app">
-            <ImageView
+            android:layout_height="@dimen/_110sdp"
+            android:stateListAnimator="@null"
+            android:background="@drawable/bg_top">
+            <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_80sdp"
-                android:background="@drawable/bg_top"/>
+                android:layout_height="@dimen/_60sdp"
+                app:layout_scrollFlags="scroll"
+                android:animateLayoutChanges="true"
+                app:contentScrim="@color/bg_green">
 
-            <androidx.core.widget.NestedScrollView
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/robotAnimation"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_80sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_gravity="start|top"
+                    app:lottie_rawRes="@raw/robot"
+                    app:lottie_loop="true"
+                    app:lottie_autoPlay="true" />
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/searchView"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fillViewport="true"
-                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/bg_white_stroke_gray"
+                android:theme="@style/ThemeOverlay.AppCompat.Light"
+                app:iconifiedByDefault="false"
+                app:layout_collapseMode="pin"
+                app:layout_scrollFlags="enterAlways"
+                android:elevation="0dp"
+                app:queryHint="Tìm kiếm ở đây" />
+        </com.google.android.material.appbar.AppBarLayout>
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            android:fillViewport="true"
+            android:background="@color/bg_app">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
                 android:background="@color/bg_app">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:background="@color/bg_app">
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_15sdp"
-                        android:layout_marginEnd="@dimen/_15sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:orientation="horizontal">
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal">
 
-                        <TextView
-                            style="@style/Text_16_Bold_Black"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="Gợi ý việc làm phù hợp"
-                            android:textColor="@color/black" />
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Xem tất cả"
-                            android:textColor="@color/text_3"
-                            style="@style/Text_12_Bold_Edit"/>
-                    </LinearLayout>
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/viewPager"
+                    <TextView
+                        style="@style/Text_16_Bold_Black"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Gợi ý việc làm phù hợp"
+                        android:textColor="@color/black" />
+                    <TextView
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_500sdp" />
-
-                    <LinearLayout
-                        android:id="@+id/indicatorLayout"
-                        android:orientation="horizontal"
-                        android:gravity="center"
-                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_margin="16dp" />
+                        android:text="Xem tất cả"
+                        android:textColor="@color/text_3"
+                        style="@style/Text_12_Bold_Edit"/>
                 </LinearLayout>
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewPager"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_520sdp" />
 
-            </androidx.core.widget.NestedScrollView>
+                <LinearLayout
+                    android:id="@+id/indicatorLayout"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp" />
+            </LinearLayout>
 
+        </androidx.core.widget.NestedScrollView>
 
-        </LinearLayout>
-        <com.airbnb.lottie.LottieAnimationView
-            android:id="@+id/robotAnimation"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginStart="@dimen/_10sdp"
-            app:lottie_rawRes="@raw/robot"
-            app:lottie_loop="true"
-            app:lottie_autoPlay="true" />
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/searchView"
-            android:layout_width="@dimen/_300sdp"
-            android:layout_height="@dimen/_40sdp"
-            android:theme="@style/ThemeOverlay.AppCompat.Light"
-            app:iconifiedByDefault="false"
-            android:layout_marginTop="@dimen/_60sdp"
-            android:layout_marginStart="@dimen/_10sdp"
-            app:queryHint="Tìm kiếm ở đây"
-            android:background="@drawable/bg_white_stroke_gray"
-            />
-    </FrameLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>
