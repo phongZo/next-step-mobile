@@ -47,6 +47,7 @@
                 android:layout_height="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:background="@drawable/bg_white_stroke_gray"
                 android:theme="@style/ThemeOverlay.AppCompat.Light"
                 app:iconifiedByDefault="false"
