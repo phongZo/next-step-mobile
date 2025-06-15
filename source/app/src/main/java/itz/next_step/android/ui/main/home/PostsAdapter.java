@@ -3,9 +3,7 @@ package itz.next_step.android.ui.main.home;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.LifecycleOwner;
@@ -15,16 +13,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-import itz.next_step.android.R;
 import itz.next_step.android.data.model.api.response.company.CompanyResponse;
 import itz.next_step.android.data.model.api.response.post.PostClientListResponse;
 import itz.next_step.android.databinding.ItemJobBinding;
 
 public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private final List<PostClientListResponse<CompanyResponse>> postList = new ArrayList<>();
+    private static OnPostClickListener listener;
+    public interface OnPostClickListener {
+        void onItemClick(Long postId);
+    }
     private HomeViewModel viewModel;
-    public PostsAdapter(HomeViewModel viewModel){
+    public PostsAdapter(HomeViewModel viewModel, OnPostClickListener listener){
         this.viewModel = viewModel;
+        this.listener = listener;
     }
 
     public void setData(List<PostClientListResponse<CompanyResponse>> newData){
@@ -85,6 +87,12 @@ public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
                 String url = item.getCompany().getLogo();
                 viewModel.loadLogo(url, liveLogo);
             }
+
+            binding.getRoot().setOnClickListener(v -> {
+                if (item != null) {
+                    listener.onItemClick(item.getId());
+                }
+            });
         }
     }
 }

@@ -21,6 +21,8 @@ import itz.next_step.android.ui.main.comment.TopCommentViewModel;
 import itz.next_step.android.ui.main.cv.CvProfileViewModel;
 import itz.next_step.android.ui.main.home.HomeViewModel;
 import itz.next_step.android.ui.main.notification.NotificationViewModel;
+import itz.next_step.android.ui.main.postDetail.CompanyViewModel;
+import itz.next_step.android.ui.main.postDetail.InfoJobViewModel;
 
 @Module
 public class FragmentModule {
@@ -83,5 +85,21 @@ public class FragmentModule {
         Supplier<AccountUnLoginViewModel> supplier = () -> new AccountUnLoginViewModel(repository, (MVVMApplication)application);
         ViewModelProviderFactory<AccountUnLoginViewModel> factory = new ViewModelProviderFactory<>(AccountUnLoginViewModel.class, supplier);
         return new ViewModelProvider(fragment, factory).get(AccountUnLoginViewModel.class);
+    }
+
+    @Provides
+    @FragmentScope
+    InfoJobViewModel provideInfoJobViewModel(Repository repository, Context application) {
+        Supplier<InfoJobViewModel> supplier = () -> new InfoJobViewModel(repository, (MVVMApplication)application);
+        ViewModelProviderFactory<InfoJobViewModel> factory = new ViewModelProviderFactory<>(InfoJobViewModel.class, supplier);
+        return new ViewModelProvider(fragment, factory).get(InfoJobViewModel.class);
+    }
+
+    @Provides
+    @FragmentScope
+    CompanyViewModel provideCompanyViewModel(Repository repository, Context application) {
+        Supplier<CompanyViewModel> supplier = () -> new CompanyViewModel(repository, (MVVMApplication)application);
+        ViewModelProviderFactory<CompanyViewModel> factory = new ViewModelProviderFactory<>(CompanyViewModel.class, supplier);
+        return new ViewModelProvider(fragment, factory).get(CompanyViewModel.class);
     }
 }

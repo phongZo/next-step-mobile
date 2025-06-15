@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="f"
+            type="itz.next_step.android.ui.main.postDetail.CompanyFragment"/>
+        <variable
+            name="vm"
+            type="itz.next_step.android.ui.main.postDetail.CompanyViewModel"/>
+
+        <import type="android.view.View"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/_10sdp">
+        <TextView
+            android:id="@+id/tvCompanyName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_black"
+            style="@style/Text_16_Bold_Black"
+            android:textAllCaps="true"
+            android:text="Tên công ty" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/ic_address"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Địa chỉ công ty"
+                    android:textColor="@color/text_black"
+                    style="@style/Text_12_Normal_Black"/>
+                <TextView
+                    android:id="@+id/addressCompany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nội dung địa chỉ công ty"
+                    android:textColor="@color/text_black"
+                    style="@style/Text_12_Normal_Black"/>
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal">
+            <ImageView
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:src="@drawable/ic_exp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_20sdp"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Website công ty"
+                    android:textColor="@color/text_black"
+                    style="@style/Text_12_Normal_Black"/>
+                <TextView
+                    android:id="@+id/websiteCompany"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nội dung website công ty"
+                    android:textColor="@color/text_green"
+                    style="@style/Text_12_Normal_Black"/>
+            </LinearLayout>
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_black"
+            style="@style/Text_16_Bold_Black"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="Giới thiệu công ty" />
+        <TextView
+            android:id="@+id/descriptionCompany"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/text_black"
+            style="@style/Text_12_Normal_Black"
+            android:text="Nội dung địa điểm làm việc" />
+    </LinearLayout>
+
+</layout>

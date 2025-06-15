@@ -162,6 +162,8 @@ public interface ApiService {
     //    POST CONTROLLER
     @GET("/v1/post/client-list")
     Observable<ResponseWrapper<ResponseListObj<PostClientListResponse<CompanyResponse>>>> getPost();
+    @GET("/v1/post/client-get/{id}")
+    Observable<ResponseWrapper<PostClientListResponse<CompanyResponse>>> getPostById(@Path("id") Long id);
 
     //File
     @GET("v1/file/download{file}")

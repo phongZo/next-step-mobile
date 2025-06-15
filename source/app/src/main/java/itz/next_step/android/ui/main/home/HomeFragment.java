@@ -31,6 +31,7 @@ import itz.next_step.android.data.model.api.response.post.PostClientListResponse
 import itz.next_step.android.databinding.FragmentHomeBinding;
 import itz.next_step.android.di.component.FragmentComponent;
 import itz.next_step.android.ui.base.fragment.BaseFragment;
+import itz.next_step.android.ui.main.postDetail.PostDetailActivity;
 import itz.next_step.android.ui.main.search.SearchActivity;
 
 public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewModel> {
@@ -49,12 +50,12 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
             }
         });
 
-        setupJobs();
+        loadJobs();
 
         return binding.getRoot();
     }
 
-    private void setupJobs() {
+    private void loadJobs() {
         viewModel.fetchPostList();
         viewModel.getPostList().observe(getViewLifecycleOwner(), postClientListResponses -> {
 
@@ -70,7 +71,11 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
                 pages.add(filteredList.subList(i, Math.min(i + 4, filteredList.size())));
             }
 
-            PostsPagerAdapter postsPagerAdapter = new PostsPagerAdapter(pages, viewModel);
+            PostsPagerAdapter postsPagerAdapter = new PostsPagerAdapter(pages, viewModel, postId -> {
+                Intent intent = new Intent(requireContext(), PostDetailActivity.class);
+                intent.putExtra("post_id", postId);
+                startActivity(intent);
+            });
             binding.viewPager.setAdapter(postsPagerAdapter);
 
             setupIndicator(pages.size());

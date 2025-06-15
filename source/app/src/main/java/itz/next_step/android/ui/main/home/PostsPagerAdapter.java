@@ -17,10 +17,12 @@ import itz.next_step.android.data.model.api.response.post.PostClientListResponse
 public class PostsPagerAdapter extends RecyclerView.Adapter<PostsPagerAdapter.PageViewHolder> {
     private final List<List<PostClientListResponse<CompanyResponse>>> pages;
     private final HomeViewModel viewModel;
+    private final PostsAdapter.OnPostClickListener listener;
 
-    public PostsPagerAdapter(List<List<PostClientListResponse<CompanyResponse>>> pages, HomeViewModel viewModel) {
+    public PostsPagerAdapter(List<List<PostClientListResponse<CompanyResponse>>> pages, HomeViewModel viewModel, PostsAdapter.OnPostClickListener listener) {
         this.pages = pages;
         this.viewModel = viewModel;
+        this.listener = listener;
     }
 
     static class PageViewHolder extends RecyclerView.ViewHolder {
@@ -41,7 +43,7 @@ public class PostsPagerAdapter extends RecyclerView.Adapter<PostsPagerAdapter.Pa
 
     @Override
     public void onBindViewHolder(@NonNull PageViewHolder holder, int position) {
-        PostsAdapter adapter = new PostsAdapter(viewModel);
+        PostsAdapter adapter = new PostsAdapter(viewModel, listener);
         adapter.setData(pages.get(position));
         holder.recyclerView.setLayoutManager(new LinearLayoutManager(holder.recyclerView.getContext()));
         holder.recyclerView.setAdapter(adapter);

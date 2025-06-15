@@ -13,6 +13,7 @@ import itz.next_step.android.ui.base.activity.BaseActivity;
 import itz.next_step.android.ui.main.MainViewModel;
 import itz.next_step.android.ui.main.login.LoginViewModel;
 import itz.next_step.android.ui.main.login.SignUpViewModel;
+import itz.next_step.android.ui.main.postDetail.PostDetailViewModel;
 import itz.next_step.android.ui.main.search.SearchViewModel;
 import itz.next_step.android.utils.GetInfo;
 
@@ -75,5 +76,13 @@ public class ActivityModule {
         Supplier<SearchViewModel> supplier = () -> new SearchViewModel(repository, (MVVMApplication)application);
         ViewModelProviderFactory<SearchViewModel> factory = new ViewModelProviderFactory<>(SearchViewModel.class, supplier);
         return new ViewModelProvider(activity, factory).get(SearchViewModel.class);
+    }
+
+    @Provides
+    @ActivityScope
+    PostDetailViewModel providePostDetailViewModel(Repository repository, Context application) {
+        Supplier<PostDetailViewModel> supplier = () -> new PostDetailViewModel(repository, (MVVMApplication)application);
+        ViewModelProviderFactory<PostDetailViewModel> factory = new ViewModelProviderFactory<>(PostDetailViewModel.class, supplier);
+        return new ViewModelProvider(activity, factory).get(PostDetailViewModel.class);
     }
 }

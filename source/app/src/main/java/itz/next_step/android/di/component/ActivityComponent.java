@@ -7,6 +7,7 @@ import itz.next_step.android.ui.main.MainActivity;
 import dagger.Component;
 import itz.next_step.android.ui.main.login.LoginActivity;
 import itz.next_step.android.ui.main.login.SignUpActivity;
+import itz.next_step.android.ui.main.postDetail.PostDetailActivity;
 import itz.next_step.android.ui.main.search.SearchActivity;
 
 @ActivityScope
@@ -16,5 +17,7 @@ public interface ActivityComponent {
     void inject(LoginActivity activity);
     void inject(SignUpActivity activity);
     void inject(SearchActivity activity);
+    void inject(PostDetailActivity activity);
+
 }
 

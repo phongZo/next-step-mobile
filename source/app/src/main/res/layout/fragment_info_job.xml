@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="f"
+            type="itz.next_step.android.ui.main.postDetail.InfoJobFragment"/>
+        <variable
+            name="vm"
+            type="itz.next_step.android.ui.main.postDetail.InfoJobViewModel"/>
+
+        <import type="android.view.View"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="@dimen/_10sdp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_black"
+            style="@style/Text_16_Bold_Black"
+            android:text="Mô tả công việc" />
+        <TextView
+            android:id="@+id/descriptionJob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/text_black"
+            style="@style/Text_12_Normal_Black"
+            android:text="Nội dung mô tả công việc" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/text_black"
+            style="@style/Text_16_Bold_Black"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:text="Địa điểm làm việc" />
+        <TextView
+            android:id="@+id/addressJob"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textColor="@color/text_black"
+            style="@style/Text_12_Normal_Black"
+            android:text="Nội dung địa điểm làm việc" />
+    </LinearLayout>
+
+
+</layout>
