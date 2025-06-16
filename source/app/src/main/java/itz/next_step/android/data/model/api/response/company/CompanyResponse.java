@@ -11,4 +11,6 @@ public class CompanyResponse {
     private String logo;
     private String name;
     private String shortDescription;
+    private String address;
+    private String websiteUrl;
 }

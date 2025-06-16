@@ -31,15 +31,22 @@ import itz.next_step.android.data.model.api.response.candidate.CandidateResponse
 import itz.next_step.android.data.model.api.response.category.CategoryResponse;
 import itz.next_step.android.data.model.api.response.company.CompanyResponse;
 import itz.next_step.android.data.model.api.response.employee.EmployeeResponse;
+import itz.next_step.android.data.model.api.response.file.UploadResponse;
 import itz.next_step.android.data.model.api.response.group.GroupResponse;
 import itz.next_step.android.data.model.api.response.login.AccessTokenResponse;
 import itz.next_step.android.data.model.api.response.nation.NationAdminDtoResponse;
+import itz.next_step.android.data.model.api.response.post.PostClientListResponse;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface ApiService {
@@ -151,4 +158,14 @@ public interface ApiService {
     Observable<ResponseWrapper<ResponseListObj<NationAdminDtoResponse>>> getListNation();
     @PUT("/v1/nation/update")
     Observable<ResponseWrapper> updateNation(@Body UpdateNationRequest request);
+
+    //    POST CONTROLLER
+    @GET("/v1/post/client-list")
+    Observable<ResponseWrapper<ResponseListObj<PostClientListResponse<CompanyResponse>>>> getPost();
+    @GET("/v1/post/client-get/{id}")
+    Observable<ResponseWrapper<PostClientListResponse<CompanyResponse>>> getPostById(@Path("id") Long id);
+
+    //File
+    @GET("v1/file/download{file}")
+    Observable<ResponseBody> loadImage(@Path(value = "file", encoded = true) String file);
 }

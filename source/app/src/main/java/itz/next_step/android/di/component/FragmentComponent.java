@@ -11,6 +11,8 @@ import itz.next_step.android.ui.main.comment.TopCommentFragment;
 import itz.next_step.android.ui.main.cv.CvProfileFragment;
 import itz.next_step.android.ui.main.home.HomeFragment;
 import itz.next_step.android.ui.main.notification.NotificationFragment;
+import itz.next_step.android.ui.main.postDetail.CompanyFragment;
+import itz.next_step.android.ui.main.postDetail.InfoJobFragment;
 
 @FragmentScope
 @Component(modules = {FragmentModule.class},dependencies = AppComponent.class)
@@ -21,4 +23,6 @@ public interface FragmentComponent {
     void inject(TopCommentFragment fragment);
     void inject(AccountFragment fragment);
     void inject(AccountUnLoginFragment fragment);
+    void inject(InfoJobFragment fragment);
+    void inject(CompanyFragment fragment);
 }

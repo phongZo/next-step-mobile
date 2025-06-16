@@ -33,9 +33,11 @@
             app:menu="@menu/bottom_navigation_menu"
             android:background="@color/white"
             app:labelVisibilityMode="labeled"
-            app:itemIconTint="@color/bottom_nav_icon_color"
-            app:itemTextColor="@color/bottom_nav_icon_color"
-            app:itemIconSize="@dimen/_20sdp" />
-
+            app:itemIconTint="@color/nav_icon_color"
+            app:itemTextColor="@color/nav_icon_color"
+            app:itemTextAppearanceActive="@style/Text_8_Normal_Black"
+            app:itemTextAppearanceInactive="@style/Text_8_Normal_Black"
+            app:menu="@menu/bottom_navigation_menu"
+            />
     </LinearLayout>
 </layout>
