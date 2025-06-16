@@ -33,5 +33,6 @@
     <string name="login_un_success">Số điện thoại hoặc mật khẩu không đúng</string>
     <string name="edit">Sửa</string>
     <string name="no_update">Chưa cập nhật</string>
+    <string name="log_out">Đăng xuất</string>
 
 </resources>

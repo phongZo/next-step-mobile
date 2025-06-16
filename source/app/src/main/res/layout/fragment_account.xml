@@ -571,7 +571,7 @@
                                 <ImageView
                                     android:layout_width="@dimen/_18sdp"
                                     android:layout_height="@dimen/_18sdp"
-                                    android:src="@drawable/bag"
+                                    android:src="@drawable/building_gray"
                                     android:layout_gravity="center"/>
 
                                 <TextView
@@ -588,9 +588,10 @@
                                 <ImageView
                                     android:layout_width="@dimen/_18sdp"
                                     android:layout_height="@dimen/_18sdp"
-                                    android:src="@drawable/bag"
+                                    android:src="@drawable/back_gray"
                                     android:layout_gravity="center"
-                                    android:layout_alignParentEnd="true"/>
+                                    android:layout_alignParentEnd="true"
+                                    android:rotation="180"/>
 
                             </RelativeLayout>
 
@@ -614,7 +615,7 @@
                                 <ImageView
                                     android:layout_width="@dimen/_18sdp"
                                     android:layout_height="@dimen/_18sdp"
-                                    android:src="@drawable/bag"
+                                    android:src="@drawable/policy_gray"
                                     android:layout_gravity="center"/>
 
                                 <TextView
@@ -622,7 +623,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="@dimen/_30sdp"
                                     style="@style/Text_12_Normal_Black"
-                                    android:text="Về TopCv"
+                                    android:text="Điều khoản dịch vụ"
                                     android:maxLines="1"
                                     android:ellipsize="end"
                                     android:layout_centerVertical="true"/>
@@ -631,9 +632,10 @@
                                 <ImageView
                                     android:layout_width="@dimen/_18sdp"
                                     android:layout_height="@dimen/_18sdp"
-                                    android:src="@drawable/bag"
+                                    android:src="@drawable/back_gray"
                                     android:layout_gravity="center"
-                                    android:layout_alignParentEnd="true"/>
+                                    android:layout_alignParentEnd="true"
+                                    android:rotation="180"/>
 
                             </RelativeLayout>
 
@@ -657,7 +659,7 @@
                                 <ImageView
                                     android:layout_width="@dimen/_18sdp"
                                     android:layout_height="@dimen/_18sdp"
-                                    android:src="@drawable/bag"
+                                    android:src="@drawable/security_gray"
                                     android:layout_gravity="center"/>
 
                                 <TextView
@@ -665,7 +667,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="@dimen/_30sdp"
                                     style="@style/Text_12_Normal_Black"
-                                    android:text="Về TopCv"
+                                    android:text="Chính sách bảo mật"
                                     android:maxLines="1"
                                     android:ellipsize="end"
                                     android:layout_centerVertical="true"/>
@@ -674,9 +676,10 @@
                                 <ImageView
                                     android:layout_width="@dimen/_18sdp"
                                     android:layout_height="@dimen/_18sdp"
-                                    android:src="@drawable/bag"
+                                    android:src="@drawable/back_gray"
                                     android:layout_gravity="center"
-                                    android:layout_alignParentEnd="true"/>
+                                    android:layout_alignParentEnd="true"
+                                    android:rotation="180"/>
 
                             </RelativeLayout>
 
@@ -700,7 +703,7 @@
                                 <ImageView
                                     android:layout_width="@dimen/_18sdp"
                                     android:layout_height="@dimen/_18sdp"
-                                    android:src="@drawable/bag"
+                                    android:src="@drawable/phone_gray"
                                     android:layout_gravity="center"/>
 
                                 <TextView
@@ -708,7 +711,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="@dimen/_30sdp"
                                     style="@style/Text_12_Normal_Black"
-                                    android:text="Về TopCv"
+                                    android:text="Trợ giúp"
                                     android:maxLines="1"
                                     android:ellipsize="end"
                                     android:layout_centerVertical="true"/>
@@ -717,9 +720,10 @@
                                 <ImageView
                                     android:layout_width="@dimen/_18sdp"
                                     android:layout_height="@dimen/_18sdp"
-                                    android:src="@drawable/bag"
+                                    android:src="@drawable/back_gray"
                                     android:layout_gravity="center"
-                                    android:layout_alignParentEnd="true"/>
+                                    android:layout_alignParentEnd="true"
+                                    android:rotation="180"/>
 
                             </RelativeLayout>
 
@@ -743,7 +747,7 @@
                                 <ImageView
                                     android:layout_width="@dimen/_18sdp"
                                     android:layout_height="@dimen/_18sdp"
-                                    android:src="@drawable/bag"
+                                    android:src="@drawable/like_gray"
                                     android:layout_gravity="center"/>
 
                                 <TextView
@@ -751,7 +755,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginHorizontal="@dimen/_30sdp"
                                     style="@style/Text_12_Normal_Black"
-                                    android:text="Về TopCv"
+                                    android:text="Đánh giá ứng dụng"
                                     android:maxLines="1"
                                     android:ellipsize="end"
                                     android:layout_centerVertical="true"/>
@@ -760,9 +764,10 @@
                                 <ImageView
                                     android:layout_width="@dimen/_18sdp"
                                     android:layout_height="@dimen/_18sdp"
-                                    android:src="@drawable/bag"
+                                    android:src="@drawable/back_gray"
                                     android:layout_gravity="center"
-                                    android:layout_alignParentEnd="true"/>
+                                    android:layout_alignParentEnd="true"
+                                    android:rotation="180"/>
 
                             </RelativeLayout>
 
@@ -775,6 +780,36 @@
                         </RelativeLayout>
 
                     </LinearLayout>
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_btn_white_radius_12"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginBottom="@dimen/_12sdp"
+                        android:onClick="@{v -> f.onLogoutClick()}">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:layout_margin="@dimen/_6sdp"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/log_out"
+                                style="@style/Text_12_Bold_Black"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="@dimen/_6sdp"/>
+
+                            <ImageView
+                                android:layout_width="@dimen/_16sdp"
+                                android:layout_height="@dimen/_16sdp"
+                                android:src="@drawable/logout"
+                                android:layout_gravity="center"/>
+                        </LinearLayout>
+                    </RelativeLayout>
 
                 </LinearLayout>
 
@@ -835,7 +870,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Text_14_Bold_Black"
-                    android:text="@string/please_login"
+                    android:text="@string/name"
                     />
 
                 <TextView
@@ -843,7 +878,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     style="@style/Text_12_Normal_Black"
-                    android:text="@string/please_login"/>
+                    android:text="@string/email"/>
 
             </LinearLayout>
         </LinearLayout>
