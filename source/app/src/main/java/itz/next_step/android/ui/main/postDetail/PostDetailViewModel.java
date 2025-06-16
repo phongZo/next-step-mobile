@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Observable;
@@ -60,8 +61,8 @@ public class PostDetailViewModel extends BaseViewModel {
                             }
                             hideLoading();
                         }, throwable -> {
-                            hideLoading();
                             Timber.e(throwable);
+                            hideLoading();
                         }));
     }
     public void loadLogo(String url){
