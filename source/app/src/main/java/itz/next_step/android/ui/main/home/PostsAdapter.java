@@ -1,6 +1,7 @@
 package itz.next_step.android.ui.main.home;
 
 import android.graphics.Bitmap;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import itz.next_step.android.data.model.api.response.post.PostClientListResponse
 import itz.next_step.android.databinding.ItemJobBinding;
 
 public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+    private static long lastClickTime = 0;
+
     private final List<PostClientListResponse<CompanyResponse>> postList = new ArrayList<>();
     private static OnPostClickListener listener;
     public interface OnPostClickListener {
@@ -89,6 +92,8 @@ public class PostsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
             }
 
             binding.getRoot().setOnClickListener(v -> {
+                if (SystemClock.elapsedRealtime() - lastClickTime < 1000) return;
+                lastClickTime = SystemClock.elapsedRealtime();
                 if (item != null) {
                     listener.onItemClick(item.getId());
                 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -105,7 +106,7 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
         binding.indicatorLayout.removeAllViews();
         for (int i = 0; i < count; i++) {
             View dot = new View(requireContext());
-            int size = (int) getResources().getDimension(R.dimen._8sdp); // ví dụ bạn định nghĩa: 8dp
+            int size = (int) getResources().getDimension(R.dimen._8sdp);
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size, size);
             params.setMargins(8, 0, 8, 0);
             dot.setLayoutParams(params);

@@ -44,18 +44,18 @@ public class PostDetailActivity extends BaseActivity<ActivityPostDetailBinding, 
             finish();
         }
         viewModel.logoLiveData.observe(this, bitmap -> {
-            viewBinding.logo.setImageBitmap(bitmap);
+            viewBinding.postDetailLayout.logo.setImageBitmap(bitmap);
         });
         viewModel.getPostDetail().observe(this, postDetail ->{
-            viewBinding.tvJobPosition.setText(postDetail.getName());
+            viewBinding.postDetailLayout.tvJobPosition.setText(postDetail.getName());
             viewBinding.tvJobPositionCollapsed.setText(postDetail.getName());
-            viewBinding.tvCompanyName.setText(postDetail.getCompany().getName());
+            viewBinding.postDetailLayout.tvCompanyName.setText(postDetail.getCompany().getName());
 
             String salaryText = (postDetail.getMinSalary() / 1000000) + " - " + (postDetail.getMaxSalary()/1000000) + " triệu";
-            viewBinding.tvSalary.setText(salaryText);
+            viewBinding.postDetailLayout.tvSalary.setText(salaryText);
 
             String exp = (postDetail.getExperience())+ " năm";
-            viewBinding.tvExp.setText(exp);
+            viewBinding.postDetailLayout.tvExp.setText(exp);
 
             viewModel.loadLogo(postDetail.getCompany().getLogo());
 
