@@ -73,8 +73,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
             }
 
             PostsPagerAdapter postsPagerAdapter = new PostsPagerAdapter(pages, viewModel, postId -> {
-                showProgressbar("Đang tải chi tiết...");
-
                 Intent intent = new Intent(requireContext(), PostDetailActivity.class);
                 intent.putExtra("post_id", postId);
                 startActivity(intent);
@@ -127,13 +125,6 @@ public class HomeFragment extends BaseFragment<FragmentHomeBinding, HomeViewMode
                     : R.drawable.indicator_unactive;
             dot.setBackground(ContextCompat.getDrawable(requireContext(), drawableId));
         }
-    }
-
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        hideProgress();
     }
 
     @Override

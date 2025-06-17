@@ -3,34 +3,34 @@ package itz.next_step.android.ui.main.postDetail;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewTreeObserver;
 
 import androidx.annotation.Nullable;
 
+import androidx.databinding.DataBindingUtil;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
+import java.util.Objects;
+
 import eu.davidea.flexibleadapter.databinding.BR;
 import itz.next_step.android.R;
 import itz.next_step.android.databinding.ActivityPostDetailBinding;
+import itz.next_step.android.databinding.LayoutPostDetailFullBinding;
 import itz.next_step.android.di.component.ActivityComponent;
 import itz.next_step.android.ui.base.activity.BaseActivity;
 
 public class PostDetailActivity extends BaseActivity<ActivityPostDetailBinding, PostDetailViewModel> {
-
+    LayoutPostDetailFullBinding contentBinding;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         viewBinding.setA(this);
         viewBinding.setVm(viewModel);
-
-        viewBinding.btnBack.setOnClickListener(v-> {finish();});
-        customTabLayout();
-
-        setupToolbar();
-        viewBinding.btnBackCollapsed.setOnClickListener(v-> {finish();});
+        viewBinding.loadingLayout.setVisibility(View.VISIBLE);
         loadData();
 
     }
@@ -44,26 +44,39 @@ public class PostDetailActivity extends BaseActivity<ActivityPostDetailBinding, 
             finish();
         }
         viewModel.logoLiveData.observe(this, bitmap -> {
-            viewBinding.postDetailLayout.logo.setImageBitmap(bitmap);
+            contentBinding.postDetailLayout.logo.setImageBitmap(bitmap);
         });
         viewModel.getPostDetail().observe(this, postDetail ->{
-            viewBinding.postDetailLayout.tvJobPosition.setText(postDetail.getName());
-            viewBinding.tvJobPositionCollapsed.setText(postDetail.getName());
-            viewBinding.postDetailLayout.tvCompanyName.setText(postDetail.getCompany().getName());
+
+            if (contentBinding == null) {
+                View inflatedView = Objects.requireNonNull(viewBinding.viewStubContent.getViewStub()).inflate();
+                contentBinding = DataBindingUtil.bind(inflatedView);
+                contentBinding.setVm(viewModel);
+
+                // ✅ Setup UI sau khi binding
+                contentBinding.btnBack.setOnClickListener(v -> finish());
+                contentBinding.btnBackCollapsed.setOnClickListener(v -> finish());
+                setupToolbar();
+                customTabLayout();
+            }
+            contentBinding.postDetailLayout.tvJobPosition.setText(postDetail.getName());
+            contentBinding.tvJobPositionCollapsed.setText(postDetail.getName());
+            contentBinding.postDetailLayout.tvCompanyName.setText(postDetail.getCompany().getName());
 
             String salaryText = (postDetail.getMinSalary() / 1000000) + " - " + (postDetail.getMaxSalary()/1000000) + " triệu";
-            viewBinding.postDetailLayout.tvSalary.setText(salaryText);
+            contentBinding.postDetailLayout.tvSalary.setText(salaryText);
 
             String exp = (postDetail.getExperience())+ " năm";
-            viewBinding.postDetailLayout.tvExp.setText(exp);
+            contentBinding.postDetailLayout.tvExp.setText(exp);
 
             viewModel.loadLogo(postDetail.getCompany().getLogo());
+            viewBinding.loadingLayout.setVisibility(View.GONE);
 
         });
     }
 
     private void setupToolbar() {
-        viewBinding.appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
+        contentBinding.appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             boolean isShown = false;
             int scrollRange = -1;
 
@@ -74,10 +87,10 @@ public class PostDetailActivity extends BaseActivity<ActivityPostDetailBinding, 
                 }
 
                 if (scrollRange + verticalOffset == 0) {
-                    viewBinding.toolbarCollapse.setVisibility(View.VISIBLE);
+                    contentBinding.toolbarCollapse.setVisibility(View.VISIBLE);
                     isShown = true;
                 } else if (isShown) {
-                    viewBinding.toolbarCollapse.setVisibility(View.GONE);
+                    contentBinding.toolbarCollapse.setVisibility(View.GONE);
                     isShown = false;
                 }
             }
@@ -86,10 +99,10 @@ public class PostDetailActivity extends BaseActivity<ActivityPostDetailBinding, 
 
     private void customTabLayout() {
         PostDetailViewPagerAdapter postDetailViewPagerAdapter = new PostDetailViewPagerAdapter(this);
-        viewBinding.viewPager.setAdapter(postDetailViewPagerAdapter);
+        contentBinding.viewPager.setAdapter(postDetailViewPagerAdapter);
 
-        TabLayout tabLayout = viewBinding.tabLayout;
-        ViewPager2 viewPager = viewBinding.viewPager;
+        TabLayout tabLayout = contentBinding.tabLayout;
+        ViewPager2 viewPager = contentBinding.viewPager;
         viewPager.setUserInputEnabled(false);
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
             if (position == 0) {

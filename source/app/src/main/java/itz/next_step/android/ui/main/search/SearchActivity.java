@@ -1,6 +1,7 @@
 package itz.next_step.android.ui.main.search;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.os.Handler;
@@ -25,6 +26,7 @@ import itz.next_step.android.databinding.ActivitySearchBinding;
 import itz.next_step.android.di.component.ActivityComponent;
 import itz.next_step.android.ui.base.activity.BaseActivity;
 import itz.next_step.android.ui.main.home.PostsAdapter;
+import itz.next_step.android.ui.main.postDetail.PostDetailActivity;
 
 public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchViewModel> {
     @Override
@@ -39,7 +41,11 @@ public class SearchActivity extends BaseActivity<ActivitySearchBinding, SearchVi
 
     }
     void setupBtnRecycleView(){
-        SearchAdapter searchAdapter = new SearchAdapter(viewModel);
+        SearchAdapter searchAdapter = new SearchAdapter(viewModel, id ->{
+            Intent intent = new Intent(this, PostDetailActivity.class);
+            intent.putExtra("post_id", id);
+            startActivity(intent);
+        });
         viewBinding.rcvSearch.setLayoutManager(new LinearLayoutManager(this));
         viewBinding.rcvSearch.setAdapter(searchAdapter);
 

@@ -17,12 +17,18 @@ import itz.next_step.android.data.model.api.response.company.CompanyResponse;
 import itz.next_step.android.data.model.api.response.post.PostClientListResponse;
 import itz.next_step.android.databinding.ItemJobBinding;
 import itz.next_step.android.ui.main.home.HomeViewModel;
+import itz.next_step.android.ui.main.home.PostsAdapter;
 
 public class SearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
     private final List<PostClientListResponse<CompanyResponse>> postList = new ArrayList<>();
     private SearchViewModel viewModel;
-    public SearchAdapter(SearchViewModel viewModel){
+    private static OnPostClickListener listener;
+    public interface OnPostClickListener {
+        void onItemClick(Long postId);
+    }
+    public SearchAdapter(SearchViewModel viewModel, OnPostClickListener listener){
         this.viewModel = viewModel;
+        this.listener = listener;
     }
 
     public void setData(List<PostClientListResponse<CompanyResponse>> newData){
@@ -83,6 +89,11 @@ public class SearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 String url = item.getCompany().getLogo();
                 viewModel.loadLogo(url, liveLogo);
             }
+            binding.getRoot().setOnClickListener(v -> {
+                if (listener != null) {
+                    listener.onItemClick(item.getId());
+                }
+            });
         }
     }
 }

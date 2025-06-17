@@ -3,6 +3,7 @@ package itz.next_step.android.ui.main.postDetail;
 import android.graphics.Bitmap;
 import android.util.Log;
 
+import androidx.databinding.ObservableBoolean;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -29,6 +30,7 @@ import okhttp3.ResponseBody;
 import timber.log.Timber;
 
 public class PostDetailViewModel extends BaseViewModel {
+    public final ObservableBoolean isLoading = new ObservableBoolean(true);
     MutableLiveData<Bitmap> logoLiveData = new MutableLiveData<>();
     private final MutableLiveData<PostClientListResponse<CompanyResponse>> postDetail = new MutableLiveData<>();
     public LiveData<PostClientListResponse<CompanyResponse>> getPostDetail() {
