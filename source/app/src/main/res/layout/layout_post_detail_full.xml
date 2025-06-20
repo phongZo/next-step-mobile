@@ -21,7 +21,7 @@
             android:background="@drawable/bg_detail_post_top">
             <com.google.android.material.appbar.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_240sdp"
+                android:layout_height="@dimen/_250sdp"
                 app:layout_scrollFlags="scroll"
                 android:animateLayoutChanges="true"
                 app:contentScrim="@color/bg_green">

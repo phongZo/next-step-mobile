@@ -14,7 +14,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
-        buildConfigField "String", "BASE_URL", "\"https://aeb8-115-73-105-67.ngrok-free.app\""
+        buildConfigField "String", "BASE_URL", "\"https://1bc5-116-109-105-113.ngrok-free.app\""
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
