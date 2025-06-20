@@ -1,6 +1,7 @@
 package itz.next_step.android.ui.main.search;
 
 import android.graphics.Bitmap;
+import android.os.SystemClock;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import itz.next_step.android.ui.main.home.HomeViewModel;
 import itz.next_step.android.ui.main.home.PostsAdapter;
 
 public class SearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
+    private static long lastClickTime = 0;
     private final List<PostClientListResponse<CompanyResponse>> postList = new ArrayList<>();
     private SearchViewModel viewModel;
     private static OnPostClickListener listener;
@@ -90,6 +92,8 @@ public class SearchAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>
                 viewModel.loadLogo(url, liveLogo);
             }
             binding.getRoot().setOnClickListener(v -> {
+                if (SystemClock.elapsedRealtime() - lastClickTime < 1000) return;
+                lastClickTime = SystemClock.elapsedRealtime();
                 if (listener != null) {
                     listener.onItemClick(item.getId());
                 }

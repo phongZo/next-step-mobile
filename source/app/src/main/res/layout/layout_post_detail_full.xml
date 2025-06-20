@@ -80,12 +80,12 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:visibility="gone"
-                    android:padding="@dimen/_5sdp"
                     android:background="@color/bg_app">
                     <ImageView
                         android:id="@+id/btnBackCollapsed"
                         android:layout_width="@dimen/_30sdp"
                         android:layout_height="@dimen/_30sdp"
+                        android:padding="@dimen/_5sdp"
                         android:src="@drawable/ic_back"/>
 
                     <TextView
@@ -96,7 +96,8 @@
                         android:layout_gravity="center"
                         android:text="Vị trí công việc"
                         android:gravity="center_vertical"
-                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginEnd="@dimen/_5sdp"
                         android:maxLines="2"
                         style="@style/Text_14_Bold_Black"/>
 

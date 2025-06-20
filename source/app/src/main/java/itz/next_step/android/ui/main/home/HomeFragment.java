@@ -24,6 +24,7 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 import itz.next_step.android.BR;
 import itz.next_step.android.R;
