@@ -116,6 +116,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     public void handleFragment(String tag) {
+        viewModel.hideLoading();
         if (fm == null) fm = getSupportFragmentManager();
 
         if (homeFragment == null) homeFragment = new HomeFragment();
@@ -161,6 +162,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                     .commit();
         }
         active = target;
+    }
+
+    public void setBottomNavSelected(int itemId) {
+        if (viewBinding != null) {
+            viewBinding.bottomNav.setSelectedItemId(itemId);
+        }
     }
 
     public void navigateToLogin() {

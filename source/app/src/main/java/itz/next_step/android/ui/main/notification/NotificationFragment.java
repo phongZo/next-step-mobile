@@ -5,12 +5,20 @@ import itz.next_step.android.R;
 import itz.next_step.android.databinding.FragmentNotificationBinding;
 import itz.next_step.android.di.component.FragmentComponent;
 import itz.next_step.android.ui.base.fragment.BaseFragment;
+import itz.next_step.android.ui.main.MainActivity;
 
 public class NotificationFragment extends BaseFragment<FragmentNotificationBinding, NotificationViewModel> {
     @Override
     protected void performDataBinding() {
         binding.setF(this);
         binding.setVm(viewModel);
+        viewModel.isLogin.set(((MainActivity) requireActivity()).isLogin());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        viewModel.isLogin.set(((MainActivity) requireActivity()).isLogin());
     }
 
     @Override

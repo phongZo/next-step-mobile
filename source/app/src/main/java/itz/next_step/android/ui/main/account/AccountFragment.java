@@ -5,12 +5,31 @@ import itz.next_step.android.R;
 import itz.next_step.android.databinding.FragmentAccountBinding;
 import itz.next_step.android.di.component.FragmentComponent;
 import itz.next_step.android.ui.base.fragment.BaseFragment;
+import itz.next_step.android.ui.main.MainActivity;
+import itz.next_step.android.utils.DialogConfirmUtils;
 
 public class AccountFragment extends BaseFragment<FragmentAccountBinding, AccountViewModel> {
     @Override
     protected void performDataBinding() {
         binding.setF(this);
         binding.setVm(viewModel);
+    }
+    public void onLogoutClick() {
+        DialogConfirmUtils.showConfirmDialog(
+                getContext(),
+                "Bạn chắc chắn muốn đăng xuất?",
+                "Xác nhận",
+                "Hủy",
+                () -> {
+                    viewModel.logout();
+                    if (getActivity() instanceof MainActivity) {
+                        MainActivity mainActivity = (MainActivity) getActivity();
+                        mainActivity.handleFragment("HOME");
+                        mainActivity.setBottomNavSelected(R.id.home);
+                        viewModel.hideLoading();
+                    }
+                }
+        );
     }
 
     @Override

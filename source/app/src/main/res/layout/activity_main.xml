@@ -30,6 +30,7 @@
             android:id="@+id/bottomNav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:menu="@menu/bottom_navigation_menu"
             android:background="@color/white"
             app:labelVisibilityMode="labeled"
             app:itemIconTint="@color/nav_icon_color"
