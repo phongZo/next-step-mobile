@@ -56,7 +56,7 @@ public class AccountFragment extends BaseFragment<FragmentAccountBinding, Accoun
                 float progress = Math.abs(verticalOffset * 1.0f / totalScrollRange);
                 if (originalWidth == 0 || originalHeight == 0) return;
 
-                float scale = 1f - progress * 0.7f;
+                float scale = 1f - progress * 0.5f;
 
                 ViewGroup.LayoutParams params = avatarContainer.getLayoutParams();
                 params.width = (int) (originalWidth * scale);
