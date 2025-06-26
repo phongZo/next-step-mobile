@@ -859,71 +859,8 @@
             </androidx.core.widget.NestedScrollView>
 
 
-        </LinearLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_60sdp"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:background="@drawable/bg_white_radius_8sdp"
-
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_70sdp"
-                android:layout_marginVertical="@dimen/_20sdp"
-                android:layout_marginHorizontal="@dimen/_14sdp">
-
-                <FrameLayout
-                    android:layout_width="@dimen/_69sdp"
-                    android:layout_height="@dimen/_69sdp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/bg_avatar">
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:cardCornerRadius="@dimen/_50sdp"
-                        android:layout_gravity="center"
-                        android:layout_margin="@dimen/_1sdp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/avatar"
-                            android:layout_margin="@dimen/_12sdp"/>
-                    </androidx.cardview.widget.CardView>
-
-                </FrameLayout>
-
-            </FrameLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/Text_14_Bold_Black"
-                    android:text="@string/please_login"
-                    />
-
-                <TextView
-                    android:id="@+id/email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/Text_12_Normal_Black"
-                    android:text="@string/please_login"/>
-
-            </LinearLayout>
-        </LinearLayout>
     </FrameLayout>
 
 </layout>
