@@ -6,8 +6,7 @@ import lombok.Data;
 
 @Data
 public class ResponseListObj<T> {
-    private List<T> data;
-    private Integer page;
-    private Integer totalPage;
+    private List<T> content;
+    private int totalPages;
     private Long totalElements;
 }

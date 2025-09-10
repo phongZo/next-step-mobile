@@ -63,7 +63,11 @@
 
         <activity android:name=".ui.main.login.SignUpActivity"
             android:windowSoftInputMode="adjustResize"/>
-
+        <activity android:name=".ui.main.search.SearchActivity"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".ui.main.postDetail.PostDetailActivity"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustResize"/>
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"

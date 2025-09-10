@@ -1,7 +1,12 @@
 package itz.next_step.android.ui.main;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.os.Bundle;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -83,7 +88,24 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 //            viewModel.getApplication().getUser();
 //        }
     }
-
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ev.getAction() == MotionEvent.ACTION_DOWN) {
+            View v = getCurrentFocus();
+            if (v != null) {
+                Rect outRect = new Rect();
+                v.getGlobalVisibleRect(outRect);
+                if (!outRect.contains((int) ev.getRawX(), (int) ev.getRawY())) {
+                    v.clearFocus();
+                    InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                    if (imm != null) {
+                        imm.hideSoftInputFromWindow(v.getWindowToken(), 0);
+                    }
+                }
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
     private void initFragments() {
         homeFragment = new HomeFragment();
         fm = getSupportFragmentManager();
@@ -94,6 +116,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     public void handleFragment(String tag) {
+        viewModel.hideLoading();
         if (fm == null) fm = getSupportFragmentManager();
 
         if (homeFragment == null) homeFragment = new HomeFragment();
@@ -139,6 +162,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                     .commit();
         }
         active = target;
+    }
+
+    public void setBottomNavSelected(int itemId) {
+        if (viewBinding != null) {
+            viewBinding.bottomNav.setSelectedItemId(itemId);
+        }
     }
 
     public void navigateToLogin() {

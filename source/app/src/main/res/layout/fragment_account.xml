@@ -17,20 +17,97 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <LinearLayout
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
             android:background="@color/bg_app">
-
-            <ImageView
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_100sdp"
-                android:background="@color/bg_logo" />
+                android:layout_height="wrap_content"
+                android:stateListAnimator="@null"
+                android:background="@drawable/bg_profile">
 
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_60sdp"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed"
+                    app:titleEnabled="false"
+                    android:fitsSystemWindows="true">
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+                <LinearLayout
+                    android:id="@+id/header"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:background="@drawable/bg_white_radius_8sdp"
+                    android:orientation="horizontal">
+
+                    <FrameLayout
+                        android:id="@+id/avatarContainer"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_70sdp"
+                        android:layout_gravity="top"
+                        android:layout_margin="@dimen/_10sdp">
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="center"
+                            android:background="@drawable/bg_avatar">
+
+                            <androidx.cardview.widget.CardView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                app:cardCornerRadius="@dimen/_50sdp"
+                                android:layout_gravity="center"
+                                android:layout_margin="@dimen/_1sdp">
+
+                                <ImageView
+                                    android:id="@+id/ivAvatar"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:src="@drawable/avatar"/>
+                            </androidx.cardview.widget.CardView>
+
+                        </FrameLayout>
+
+                    </FrameLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center_vertical"
+                        android:id="@+id/textContainer"
+                        android:layout_marginEnd="@dimen/_12sdp">
+
+                        <TextView
+                            android:id="@+id/name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/Text_14_Bold_Black"
+                            android:text='@{vm.name}'
+                            android:layout_gravity="center_vertical"
+                            />
+
+                        <TextView
+                            android:id="@+id/code"
+                            style="@style/Text_12_Normal_Black"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text='@{"Mã ứng viên: " + vm.code}' />
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </com.google.android.material.appbar.AppBarLayout>
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 android:background="@color/bg_second">
 
                 <LinearLayout
@@ -48,7 +125,7 @@
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="@dimen/_80sdp"
+                            android:layout_marginTop="@dimen/_8sdp"
                             android:layout_marginBottom="@dimen/_8sdp"
                             android:orientation="vertical">
                             <RelativeLayout
@@ -782,71 +859,8 @@
             </androidx.core.widget.NestedScrollView>
 
 
-        </LinearLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_60sdp"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:background="@drawable/bg_white_radius_8sdp"
-
-            android:orientation="horizontal">
-
-            <FrameLayout
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_70sdp"
-                android:layout_marginVertical="@dimen/_20sdp"
-                android:layout_marginHorizontal="@dimen/_14sdp">
-
-                <FrameLayout
-                    android:layout_width="@dimen/_69sdp"
-                    android:layout_height="@dimen/_69sdp"
-                    android:layout_gravity="center"
-                    android:background="@drawable/bg_avatar">
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:cardCornerRadius="@dimen/_50sdp"
-                        android:layout_gravity="center"
-                        android:layout_margin="@dimen/_1sdp">
-
-                        <ImageView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:src="@drawable/avatar"
-                            android:layout_margin="@dimen/_12sdp"/>
-                    </androidx.cardview.widget.CardView>
-
-                </FrameLayout>
-
-            </FrameLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:layout_marginEnd="@dimen/_12sdp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/Text_14_Bold_Black"
-                    android:text="@string/please_login"
-                    />
-
-                <TextView
-                    android:id="@+id/email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/Text_12_Normal_Black"
-                    android:text="@string/please_login"/>
-
-            </LinearLayout>
-        </LinearLayout>
     </FrameLayout>
 
 </layout>

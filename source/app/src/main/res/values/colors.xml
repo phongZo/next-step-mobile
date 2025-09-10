@@ -15,8 +15,9 @@
     <color name="bg_logo">#1A483F</color>
     <color name="bg_btn">#00B14F</color>
     <color name="bg_app">#FFFFFFFF</color>
+    <color name="bg_green">#A77FCE5D</color>
     <color name="stroke_avatar">#3979DB</color>
-    <color name="text_black">#FF000000</color>
+    <color name="text_black">#293C4D</color>
     <color name="bg_second">#F4F5F5</color>
     <color name="text_error">#DD2C34</color>
     <color name="text_second">#F5F5F5</color>
@@ -26,4 +27,9 @@
     <color name="tag">#F4F4F4</color>
     <color name="no_update">#FF7506</color>
     <color name="line">#F5F5F5</color>
+    <color name="ic_gray">#75808C</color>
+    <color name="text_gray">#6F6E6E</color> // ic
+    <color name="text_green">#0C6F30</color>
+
+
 </resources>

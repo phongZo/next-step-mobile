@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="a"
+            type="itz.next_step.android.ui.main.postDetail.PostDetailActivity"/>
+        <variable
+            name="vm"
+            type="itz.next_step.android.ui.main.postDetail.PostDetailViewModel"/>
+
+        <import type="android.view.View"/>
+    </data>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/bg_app">
+
+        <!-- Hiện khi chưa load xong -->
+        <LinearLayout
+            android:id="@+id/loadingLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/bg_app">
+
+            <ProgressBar
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:indeterminate="true"/>
+        </LinearLayout>
+
+        <!-- Chỉ load khi cần -->
+        <ViewStub
+            android:id="@+id/viewStubContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/layout_post_detail_full"/>
+    </FrameLayout>
+</layout>

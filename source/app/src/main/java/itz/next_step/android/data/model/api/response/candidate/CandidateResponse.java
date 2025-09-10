@@ -11,4 +11,5 @@ public class CandidateResponse {
     private Boolean isAutoApply;
     private Boolean isJobSearching;
     private String jobTitle;
+    private String code;
 }

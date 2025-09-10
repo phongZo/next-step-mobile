@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@color/bg_app" />
+        </shape>
+    </item>
+
+    <item android:bottom="@dimen/_40sdp">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/bg_logo" />
+        </shape>
+    </item>
+
+</layer-list>

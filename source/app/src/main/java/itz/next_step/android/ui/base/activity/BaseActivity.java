@@ -247,4 +247,8 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends BaseView
             }
         }
     }
+
+    public Boolean isLogin() {
+        return viewModel.isLogin();
+    }
 }

@@ -52,7 +52,7 @@ public class AuthInterceptor implements Interceptor {
         } else {
             // Mặc định dùng Bearer Token
             String token = appPreferences.getToken();
-            if (token != null && !token.isEmpty()) {
+            if (token != null && !token.isEmpty() && !"NULL".equalsIgnoreCase(token)) {
                 newRequest.addHeader("Authorization", "Bearer " + token);
             }
         }
